@@ -3,7 +3,9 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
-  <title>WUSU Connect Pro | Offline-First Learning Hub</title>
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="mobile-web-app-capable" content="yes">
+  <title>WUSU Connect | Offline Learning Hub</title>
   <style>
     * {
       margin: 0;
@@ -12,47 +14,34 @@
       -webkit-tap-highlight-color: transparent;
     }
 
-    :focus-visible {
-      outline: 3px solid #1e6f5c;
-      outline-offset: 3px;
-      border-radius: 12px;
-    }
-
     body {
-      background: linear-gradient(145deg, #eef2f3 0%, #d9e2e8 100%);
-      font-family: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
+      background: #eef2f3;
+      font-family: system-ui, -apple-system, 'Segoe UI', Roboto, sans-serif;
       padding: 0;
       margin: 0;
-      min-height: 100vh;
     }
 
-    /* Full-screen app container (no phone frame) */
     .app-container {
       max-width: 500px;
       width: 100%;
       margin: 0 auto;
-      background: #ffffff;
+      background: white;
       min-height: 100vh;
       display: flex;
       flex-direction: column;
-      box-shadow: 0 0 20px rgba(0, 0, 0, 0.05);
+      box-shadow: 0 0 20px rgba(0,0,0,0.05);
     }
 
-    /* Status bar for real-time clock */
     .status-bar {
       display: flex;
       justify-content: space-between;
-      align-items: center;
       padding: 12px 20px 8px;
       font-size: 14px;
       font-weight: 600;
-      color: #1e293b;
       background: white;
       border-bottom: 1px solid #eef2f6;
     }
     .real-time-clock {
-      font-family: 'Inter', monospace;
-      font-weight: 600;
       background: #f1f5f9;
       padding: 4px 12px;
       border-radius: 30px;
@@ -61,15 +50,9 @@
 
     .app-header {
       padding: 12px 20px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
       background: white;
       border-bottom: 1px solid #eef2f6;
-      flex-wrap: wrap;
-      gap: 10px;
     }
-
     .logo-area h1 {
       font-size: 1.7rem;
       font-weight: 800;
@@ -78,13 +61,7 @@
       background-clip: text;
       color: transparent;
     }
-
-    .campus-name {
-      font-size: 11px;
-      font-weight: 600;
-      color: #2c7a5e;
-    }
-    
+    .campus-name { font-size: 11px; font-weight: 600; color: #2c7a5e; }
     .sdg-badge {
       font-size: 9px;
       font-weight: 700;
@@ -103,7 +80,6 @@
       margin: 12px 16px;
       display: flex;
       justify-content: space-between;
-      align-items: center;
       font-size: 12px;
       font-weight: 500;
       cursor: pointer;
@@ -114,7 +90,6 @@
       flex: 1;
       overflow-y: auto;
       padding: 8px 16px 20px;
-      scroll-behavior: smooth;
     }
 
     .section-title {
@@ -132,10 +107,9 @@
       border-radius: 28px;
       padding: 16px;
       margin-bottom: 14px;
-      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.03);
       border: 1px solid #eef2f6;
-      transition: all 0.2s ease;
       cursor: pointer;
+      transition: 0.1s;
     }
     .card:active { transform: scale(0.99); background: #fafcff; }
 
@@ -153,12 +127,7 @@
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
     }
-    .download-btn:active { transform: scale(0.95); background: #e2e8f0; }
-
     .open-btn {
       background: #1f8a70;
       color: white;
@@ -167,12 +136,8 @@
       font-size: 12px;
       font-weight: 600;
       cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
       border: none;
     }
-    .open-btn:active { transform: scale(0.95); background: #0f5c4a; }
 
     .progress-container {
       background: linear-gradient(135deg, #f0fdf4, #e6f7f0);
@@ -181,7 +146,7 @@
       margin: 16px 0;
     }
     .progress-bar-bg { background: #cbd5e1; border-radius: 40px; height: 10px; overflow: hidden; }
-    .progress-fill { background: linear-gradient(90deg, #1f8a70, #34d399); width: 64%; height: 100%; border-radius: 40px; transition: width 0.4s; }
+    .progress-fill { background: linear-gradient(90deg, #1f8a70, #34d399); width: 64%; height: 100%; border-radius: 40px; transition: width 0.3s; }
 
     .deadline-card {
       background: #fff9ef;
@@ -190,19 +155,8 @@
       padding: 16px;
       margin: 12px 0;
     }
-    .deadline-item { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; font-weight: 500; }
-    .deadline-date { background: #fde68a; padding: 3px 12px; border-radius: 40px; font-size: 11px; font-weight: 700; }
-    .complete-btn {
-      background: #fef3c7;
-      padding: 6px 14px;
-      border-radius: 50px;
-      font-size: 12px;
-      font-weight: 600;
-      cursor: pointer;
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-    }
+    .deadline-item { display: flex; justify-content: space-between; margin-bottom: 12px; font-size: 13px; }
+    .deadline-date { background: #fde68a; padding: 3px 12px; border-radius: 40px; font-size: 11px; }
 
     .queue-card {
       background: #f1f5fe;
@@ -213,7 +167,7 @@
       justify-content: space-between;
       align-items: center;
     }
-    .sync-now { background: #0f3b2c; color: white; border-radius: 40px; padding: 6px 16px; font-size: 11px; font-weight: 700; cursor: pointer; }
+    .sync-now { background: #0f3b2c; color: white; border-radius: 40px; padding: 6px 16px; font-size: 11px; cursor: pointer; }
 
     .offline-library {
       background: #fefce8;
@@ -230,80 +184,49 @@
       border-bottom: 1px solid #e2e8f0;
     }
     .library-item:last-child { border-bottom: none; }
-    .library-info { flex: 1; }
-    .library-title { font-weight: 700; color: #0c4e3a; margin-bottom: 4px; }
-    .library-meta { font-size: 10px; color: #64748b; }
 
-    /* Modal */
-    .modal-overlay {
-      position: fixed;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-      background: rgba(0,0,0,0.75);
-      backdrop-filter: blur(8px);
-      z-index: 2000;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      visibility: hidden;
-      opacity: 0;
-      transition: 0.2s;
-    }
-    .modal-overlay.active {
-      visibility: visible;
-      opacity: 1;
-    }
-    .modal-content {
-      background: white;
-      border-radius: 40px;
-      width: 90%;
-      max-width: 340px;
-      max-height: 80%;
-      overflow-y: auto;
-      padding: 24px;
-      position: relative;
-    }
-    .modal-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      margin-bottom: 16px;
-      padding-bottom: 12px;
-      border-bottom: 2px solid #eef2f6;
-    }
-    .modal-header h3 { font-size: 1.3rem; color: #0f3b2c; }
-    .close-modal {
-      background: none;
-      border: none;
-      font-size: 28px;
-      cursor: pointer;
-      color: #64748b;
-    }
-    .module-viewer { font-size: 14px; line-height: 1.5; }
-    .module-viewer h4 { color: #1f8a70; margin: 12px 0 8px; }
-
-    /* Profile Dashboard */
-    .profile-dashboard { display: none; animation: slideUp 0.3s ease; }
+    .profile-dashboard { display: none; }
     .profile-dashboard.active { display: block; }
-    @keyframes slideUp { from { opacity: 0; transform: translateY(15px); } to { opacity: 1; transform: translateY(0); } }
 
     .dashboard-header {
       background: linear-gradient(135deg, #0f3b2c, #1f8a70);
       border-radius: 36px;
       padding: 28px 20px;
       color: white;
-      margin-bottom: 20px;
       text-align: center;
+      margin-bottom: 20px;
     }
-    .avatar { background: white; width: 85px; height: 85px; border-radius: 50%; display: flex; align-items: center; justify-content: center; margin: 0 auto 12px; font-size: 48px; }
-    .student-name { font-size: 1.5rem; font-weight: 800; }
+    .avatar {
+      background: white;
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin: 0 auto 12px;
+      font-size: 48px;
+    }
+    .student-name { font-size: 1.4rem; font-weight: 800; }
     .stat-grid { display: grid; grid-template-columns: repeat(2, 1fr); gap: 14px; margin-bottom: 24px; }
-    .stat-card { background: white; border-radius: 28px; padding: 18px 12px; text-align: center; border: 1px solid #eef2f6; cursor: pointer; }
+    .stat-card { background: white; border-radius: 28px; padding: 18px 12px; text-align: center; border: 1px solid #eef2f6; }
     .stat-number { font-size: 32px; font-weight: 800; color: #1f8a70; }
-    .info-row { background: #f8fafc; border-radius: 20px; padding: 14px 18px; margin-bottom: 12px; display: flex; justify-content: space-between; align-items: center; }
-    .edit-btn { background: white; border: 1px solid #cbd5e1; padding: 5px 14px; border-radius: 40px; font-size: 11px; font-weight: 600; cursor: pointer; }
+    .info-row {
+      background: #f8fafc;
+      border-radius: 20px;
+      padding: 14px 18px;
+      margin-bottom: 12px;
+      display: flex;
+      justify-content: space-between;
+    }
+    .edit-btn {
+      background: white;
+      border: 1px solid #cbd5e1;
+      padding: 5px 14px;
+      border-radius: 40px;
+      font-size: 11px;
+      cursor: pointer;
+    }
 
     .bottom-nav {
       background: white;
@@ -325,6 +248,7 @@
       border-radius: 40px;
     }
     .nav-item.active { color: #1f8a70; background: #e0f2e9; }
+
     .toast {
       position: fixed;
       bottom: 80px;
@@ -332,15 +256,14 @@
       transform: translateX(-50%);
       background: #1e293b;
       color: white;
-      padding: 10px 20px;
+      padding: 8px 18px;
       border-radius: 60px;
-      font-size: 13px;
+      font-size: 12px;
       z-index: 1000;
       opacity: 0;
-      transition: opacity 0.25s;
+      transition: 0.2s;
       pointer-events: none;
-      text-align: center;
-      max-width: 85%;
+      white-space: nowrap;
     }
     .small-note { font-size: 10px; color: #6c7a91; text-align: center; margin-top: 16px; }
   </style>
@@ -361,345 +284,231 @@
   </div>
 
   <div class="sync-status" id="syncStatusArea">
-    <span>📡 Last sync: <span id="lastSyncTime">Today, just now</span></span>
+    <span>📡 Last sync: <span id="lastSyncTime">Just now</span></span>
     <span id="pendingBadge" style="background:#e2e8f0; padding:2px 12px; border-radius:30px;">0 pending</span>
   </div>
 
   <div class="content-scroll" id="scrollContent">
-    <!-- HUB SECTION -->
-    <div id="hubSection" class="hub-section">
-      <div class="section-title">📚 <span>Learning Resources</span></div>
+    <div id="hubSection">
+      <div class="section-title">📚 Learning Resources</div>
       
       <div class="card" data-resource="cit238">
-        <div class="resource-header"><span class="badge">📘 MODULE</span><div class="download-btn" data-download="cit238">📥 Download</div></div>
+        <div class="resource-header"><span class="badge">📘 MODULE</span><span class="download-btn" data-download="cit238">📥 Download</span></div>
         <div class="resource-title" style="font-weight:800;">Mobile App Development (CIT 238)</div>
-        <div>📄 PDF • 28 pages • Updated Feb 2026</div>
-        <div class="resource-status" style="font-size:12px; margin-top:8px; color:#2d6a4f;">✅ Available offline</div>
+        <div>📄 PDF • 28 pages</div>
       </div>
-
-      <div class="card" data-resource="video1">
-        <div class="resource-header"><span class="badge">🎥 VIDEO</span><div class="download-btn" data-download="video1">⬇️ Save offline</div></div>
-        <div class="resource-title">Offline-First Architecture Deep Dive</div>
-        <div>🎬 210 MB • HD • Interactive transcript</div>
-        <div class="resource-status" style="font-size:12px;">📀 Stored locally</div>
-      </div>
-
-      <div class="card" data-resource="activity1">
-        <div class="resource-header"><span class="badge">📝 ACTIVITY</span><div class="download-btn" data-download="activity1">✏️ Get worksheet</div></div>
-        <div class="resource-title">Data Structures - Hands-on Lab</div>
-        <div>Due: March 10, 2026 • Offline submission ready</div>
-        <div class="resource-status" style="font-size:12px;">📌 Answer sheet cached</div>
-      </div>
-
       <div class="card" data-resource="webdev">
-        <div class="resource-header"><span class="badge">🌐 MODULE</span><div class="download-btn" data-download="webdev">📥 Download</div></div>
-        <div class="resource-title">Web Development Fundamentals (IT 222)</div>
-        <div>📄 PDF • 34 pages • HTML/CSS/JS Basics</div>
-        <div class="resource-status" style="font-size:12px; margin-top:8px;">📖 Ready for offline access</div>
+        <div class="resource-header"><span class="badge">🌐 MODULE</span><span class="download-btn" data-download="webdev">📥 Download</span></div>
+        <div class="resource-title">Web Development Fundamentals</div>
+        <div>📄 PDF • 34 pages</div>
       </div>
-
       <div class="card" data-resource="database">
-        <div class="resource-header"><span class="badge">🗄️ MODULE</span><div class="download-btn" data-download="database">📥 Download</div></div>
-        <div class="resource-title">Database Management Systems (IT 214)</div>
-        <div>📄 PDF • 42 pages • SQL & NoSQL</div>
-        <div class="resource-status" style="font-size:12px; margin-top:8px;">📚 Premium resource</div>
-      </div>
-
-      <div class="card" data-resource="ethics">
-        <div class="resource-header"><span class="badge">⚖️ MODULE</span><div class="download-btn" data-download="ethics">📥 Download</div></div>
-        <div class="resource-title">Ethics in Information Technology</div>
-        <div>📄 PDF • 26 pages • Digital Citizenship</div>
-        <div class="resource-status" style="font-size:12px; margin-top:8px;">🌍 SDG 4 aligned</div>
+        <div class="resource-header"><span class="badge">🗄️ MODULE</span><span class="download-btn" data-download="database">📥 Download</span></div>
+        <div class="resource-title">Database Management Systems</div>
+        <div>📄 PDF • 42 pages</div>
       </div>
 
       <div class="offline-library" id="offlineLibrary">
-        <div class="resource-header" style="margin-bottom: 12px;">
-          <span class="badge" style="background:#fde047;">📦 OFFLINE LIBRARY</span>
-          <span>💾 <span id="storageCount">0</span> items cached</span>
-        </div>
-        <div id="offlineModulesList">
-          <div style="text-align: center; padding: 20px; color: #64748b;">📥 Download modules to access them offline</div>
-        </div>
-        <div class="small-note" style="margin-top: 12px;">✨ Tap any module to view content — works without internet</div>
+        <div class="resource-header"><span class="badge" style="background:#fde047;">📦 OFFLINE LIBRARY</span><span>💾 <span id="storageCount">0</span> items</span></div>
+        <div id="offlineModulesList"><div style="text-align:center;padding:20px;">📥 Download modules</div></div>
       </div>
 
-      <div class="section-title">⏰ <span>Smart Deadlines</span></div>
-      <div class="deadline-card" id="deadlineWidget">
+      <div class="section-title">⏰ Smart Deadlines</div>
+      <div class="deadline-card">
         <div class="deadline-item"><span>📱 Wireframe Prototype</span><span class="deadline-date">Feb 28, 2026</span></div>
-        <div class="deadline-item"><span>📖 Chapter 1 Research Paper</span><span class="deadline-date">Mar 05, 2026</span></div>
-        <div class="deadline-item"><span>💻 App Architecture Diagram</span><span class="deadline-date">Mar 12, 2026</span></div>
-        <div style="display: flex; gap: 12px; margin-top: 12px;">
-          <div class="complete-btn" data-deadline-action="complete-wireframe">✅ Mark Wireframe Done</div>
-          <div class="complete-btn" data-deadline-action="reminder-all">🔔 Set Reminder</div>
-        </div>
+        <div class="deadline-item"><span>📖 Research Paper</span><span class="deadline-date">Mar 05, 2026</span></div>
+        <div class="deadline-item"><span>💻 App Architecture</span><span class="deadline-date">Mar 12, 2026</span></div>
+        <div class="complete-btn" data-deadline-action="complete-wireframe" style="display:inline-block;margin-top:8px;">✅ Mark Done</div>
       </div>
 
-      <div class="section-title">📊 <span>Progress Tracker</span></div>
+      <div class="section-title">📊 Progress</div>
       <div class="progress-container" id="progressTracker">
-        <div class="progress-label" style="display: flex; justify-content: space-between;"><span>Course completion</span><span id="progressPercent" style="font-weight:800;">64%</span></div>
-        <div class="progress-bar-bg"><div class="progress-fill" id="progressFill" style="width: 64%;"></div></div>
-        <div style="display: flex; justify-content: space-between; margin-top: 14px;">
-          <span>📘 Modules: <span id="modulesCount">8</span>/12</span>
-          <span>📝 Activities: <span id="activitiesCount">5</span>/7</span>
-          <span>🔥 Streak: <span id="streakCount">12</span>d</span>
-        </div>
-        <div class="small-note">✨ Tap card to simulate study session (offline)</div>
+        <div style="display:flex;justify-content:space-between;"><span>Course completion</span><span id="progressPercent">64%</span></div>
+        <div class="progress-bar-bg"><div class="progress-fill" id="progressFill" style="width:64%"></div></div>
+        <div style="display:flex;justify-content:space-between;margin-top:12px;"><span>📘 Modules: <span id="modulesCount">8</span>/12</span><span>🔥 Streak: <span id="streakCount">12</span>d</span></div>
       </div>
 
-      <div class="section-title">⏫ <span>Submission Queue</span></div>
+      <div class="section-title">⏫ Submission Queue</div>
       <div id="queueContainer"></div>
     </div>
 
-    <!-- PROFILE DASHBOARD -->
     <div id="profileSection" class="profile-dashboard">
       <div class="dashboard-header">
         <div class="avatar">👩‍🎓</div>
         <div class="student-name" id="profileNameDisplay">Mhariz Villado</div>
-        <div class="student-details"><span>BSIT 3-D</span><span>•</span><span>ID: 2024-WVSU01234</span></div>
+        <div>BSIT 3-D</div>
       </div>
       <div class="stat-grid">
-        <div class="stat-card"><div class="stat-number" id="statProgress">64%</div><div class="stat-label">Progress</div></div>
-        <div class="stat-card"><div class="stat-number" id="statModules">8</div><div class="stat-label">Modules</div></div>
-        <div class="stat-card"><div class="stat-number" id="statActivities">5</div><div class="stat-label">Activities</div></div>
-        <div class="stat-card"><div class="stat-number" id="statStreak">12</div><div class="stat-label">Streak 🔥</div></div>
+        <div class="stat-card"><div class="stat-number" id="statProgress">64%</div><div>Progress</div></div>
+        <div class="stat-card"><div class="stat-number" id="statModules">8</div><div>Modules</div></div>
+        <div class="stat-card"><div class="stat-number" id="statStreak">12</div><div>Streak</div></div>
       </div>
-      <div class="info-row"><span class="info-label">Full Name</span><span class="info-value" id="displayName">Mhariz Villado</span><button class="edit-btn" id="editNameBtn">Edit</button></div>
-      <div class="info-row"><span class="info-label">Course</span><span class="info-value">BSIT 3-D</span></div>
-      <div class="info-row"><span class="info-label">Email</span><span class="info-value">mhariz.villado@wvsu.edu.ph</span></div>
-      <div class="info-row"><span class="info-label">Campus</span><span class="info-value">WVSU - Janiuay</span></div>
-      <div class="small-note">📌 Offline-first mode active · SDG 4: Quality Education</div>
+      <div class="info-row"><span>Full Name</span><span id="displayName">Mhariz Villado</span><button class="edit-btn" id="editNameBtn">Edit</button></div>
+      <div class="info-row"><span>Course</span><span>BSIT 3-D</span></div>
+      <div class="info-row"><span>Email</span><span>mhariz@wvsu.edu.ph</span></div>
+      <div class="small-note">📌 Offline-first · SDG 4</div>
     </div>
   </div>
 
-  <div class="bottom-nav" role="tablist">
+  <div class="bottom-nav">
     <div class="nav-item active" data-nav="hub">🏠<span>Hub</span></div>
     <div class="nav-item" data-nav="library">📦<span>Library</span></div>
-    <div class="nav-item" data-nav="deadlines">⏰<span>Deadlines</span></div>
+    <div class="nav-item" data-nav="deadlines">⏰<span>Tasks</span></div>
     <div class="nav-item" data-nav="profile">👤<span>Profile</span></div>
   </div>
-  <div id="toastMsg" class="toast">✨ WUSU Connect Pro ready</div>
-</div>
-
-<!-- MODAL -->
-<div id="moduleModal" class="modal-overlay">
-  <div class="modal-content">
-    <div class="modal-header">
-      <h3 id="modalTitle">Module Viewer</h3>
-      <button class="close-modal" id="closeModalBtn">&times;</button>
-    </div>
-    <div id="modalBody" class="module-viewer"><p>Loading content...</p></div>
-  </div>
+  <div id="toastMsg" class="toast">Ready</div>
 </div>
 
 <script>
-  // Real-time clock
-  function updateRealTimeClock() {
+  function updateClock() {
     const now = new Date();
-    const hours = now.getHours();
-    const minutes = now.getMinutes().toString().padStart(2, '0');
-    const ampm = hours >= 12 ? 'PM' : 'AM';
-    const displayHours = hours % 12 || 12;
-    document.getElementById('liveClock').textContent = `${displayHours}:${minutes} ${ampm}`;
+    const hours = now.getHours() % 12 || 12;
+    const minutes = now.getMinutes().toString().padStart(2,'0');
+    const ampm = now.getHours() >= 12 ? 'PM' : 'AM';
+    document.getElementById('liveClock').innerText = `${hours}:${minutes} ${ampm}`;
   }
-  updateRealTimeClock();
-  setInterval(updateRealTimeClock, 1000);
+  updateClock(); setInterval(updateClock,1000);
 
-  const toast = document.getElementById('toastMsg');
-  let toastTimer;
   function showMessage(msg) {
-    if (toastTimer) clearTimeout(toastTimer);
+    const toast = document.getElementById('toastMsg');
     toast.innerText = msg;
     toast.style.opacity = '1';
-    toastTimer = setTimeout(() => toast.style.opacity = '0', 2200);
+    setTimeout(() => toast.style.opacity = '0', 2000);
   }
 
-  let offlineModules = JSON.parse(localStorage.getItem('wusu_offline_modules')) || [];
-
+  let offlineModules = JSON.parse(localStorage.getItem('wusu_offline')) || [];
   const moduleContents = {
-    cit238: { title: "Mobile App Development (CIT 238)", content: "<h4>📱 Chapter 1: Introduction to Mobile Development</h4><p>Covers fundamentals of Android development, Activity lifecycle, UI design, and offline-first principles.</p><h4>🎯 SDG 4 Focus</h4><p>Offline-first design ensures equitable access to education regardless of connectivity.</p>" },
-    video1: { title: "Offline-First Architecture Deep Dive", content: "<h4>🎬 Video Lecture Transcript</h4><p>Offline-first ensures users can access content anytime, anywhere. Data syncs when connectivity returns — breaking digital barriers for quality education.</p>" },
-    activity1: { title: "Data Structures - Hands-on Lab", content: "<h4>📝 Activity Worksheet</h4><p>Implement binary search tree in Java. Answer offline questions about BST complexity and offline queuing.</p>" },
-    webdev: { title: "Web Development Fundamentals (IT 222)", content: "<h4>🌐 Introduction to Web Development</h4><p>HTML5, CSS3, JavaScript basics. Topics: semantic HTML, Flexbox, Grid, DOM manipulation, responsive design.</p>" },
-    database: { title: "Database Management Systems (IT 214)", content: "<h4>🗄️ Database Design & SQL</h4><p>ER diagrams, normalization, SQL queries, and NoSQL basics. Practice offline with sample schemas.</p>" },
-    ethics: { title: "Ethics in Information Technology", content: "<h4>⚖️ Digital Ethics</h4><p>Privacy, cybersecurity ethics, professional codes, algorithmic bias. Case studies for SDG 4 alignment.</p>" }
+    cit238: { title: "Mobile App Development", content: "<h4>📱 Chapter 1</h4><p>Offline-first Android development. Activity lifecycle, UI design, local storage.</p><p>🌍 SDG 4: Quality Education for all.</p>" },
+    webdev: { title: "Web Development", content: "<h4>🌐 HTML/CSS/JS</h4><p>Responsive design, Flexbox, Grid, DOM manipulation.</p>" },
+    database: { title: "Database Systems", content: "<h4>🗄️ SQL & NoSQL</h4><p>ER diagrams, normalization, queries.</p>" }
   };
 
-  function saveOfflineModules() {
-    localStorage.setItem('wusu_offline_modules', JSON.stringify(offlineModules));
-    renderOfflineLibrary();
-  }
-
-  function renderOfflineLibrary() {
+  function renderLibrary() {
     const container = document.getElementById('offlineModulesList');
-    const storageSpan = document.getElementById('storageCount');
+    const countSpan = document.getElementById('storageCount');
     if (!container) return;
     if (offlineModules.length === 0) {
-      container.innerHTML = '<div style="text-align: center; padding: 20px; color: #64748b;">📥 Download modules to access them offline</div>';
-      if (storageSpan) storageSpan.innerText = '0';
+      container.innerHTML = '<div style="text-align:center;padding:20px;">📥 Download modules</div>';
+      if(countSpan) countSpan.innerText = '0';
       return;
     }
-    if (storageSpan) storageSpan.innerText = offlineModules.length;
+    if(countSpan) countSpan.innerText = offlineModules.length;
     container.innerHTML = '';
-    offlineModules.forEach(module => {
+    offlineModules.forEach(mod => {
       const div = document.createElement('div');
       div.className = 'library-item';
-      div.innerHTML = `<div class="library-info"><div class="library-title">${module.title}</div><div class="library-meta">${module.type} • Cached locally</div></div><button class="open-btn" data-module-id="${module.id}">📖 Open</button>`;
-      div.querySelector('.open-btn').addEventListener('click', (e) => {
-        e.stopPropagation();
-        openOfflineModule(module.id);
-      });
+      div.innerHTML = `<div><strong>${mod.title}</strong><br><span style="font-size:10px;">Cached</span></div><button class="open-btn" data-id="${mod.id}">📖 Open</button>`;
+      div.querySelector('.open-btn').onclick = () => {
+        const data = moduleContents[mod.id];
+        if(data) alert(`${data.title}\n\n${data.content}`);
+        else showMessage('Opening module...');
+      };
       container.appendChild(div);
     });
-  }
-
-  function openOfflineModule(moduleId) {
-    const moduleData = moduleContents[moduleId];
-    if (moduleData) {
-      document.getElementById('modalTitle').innerText = moduleData.title;
-      document.getElementById('modalBody').innerHTML = moduleData.content;
-      document.getElementById('moduleModal').classList.add('active');
-      showMessage(`📖 Opening "${moduleData.title}" — offline content loaded`);
-    } else showMessage(`Module content ready offline.`);
   }
 
   document.querySelectorAll('.download-btn').forEach(btn => {
-    btn.addEventListener('click', (e) => {
+    btn.onclick = (e) => {
       e.stopPropagation();
       const card = btn.closest('.card');
-      let moduleId = '', title = '', type = '';
-      if (card?.dataset.resource === 'cit238') { moduleId = 'cit238'; title = 'Mobile App Development (CIT 238)'; type = 'PDF Module'; }
-      else if (card?.dataset.resource === 'video1') { moduleId = 'video1'; title = 'Offline-First Architecture Deep Dive'; type = 'Video Lecture'; }
-      else if (card?.dataset.resource === 'activity1') { moduleId = 'activity1'; title = 'Data Structures - Hands-on Lab'; type = 'Activity Sheet'; }
-      else if (card?.dataset.resource === 'webdev') { moduleId = 'webdev'; title = 'Web Development Fundamentals (IT 222)'; type = 'PDF Module'; }
-      else if (card?.dataset.resource === 'database') { moduleId = 'database'; title = 'Database Management Systems (IT 214)'; type = 'PDF Module'; }
-      else if (card?.dataset.resource === 'ethics') { moduleId = 'ethics'; title = 'Ethics in Information Technology'; type = 'PDF Module'; }
-      
-      if (moduleId && !offlineModules.find(m => m.id === moduleId)) {
-        offlineModules.push({ id: moduleId, title: title, type: type, size: '~2.4 MB' });
-        saveOfflineModules();
-        showMessage(`📥 "${title}" saved to offline library.`);
-        const statusDiv = card?.querySelector('.resource-status');
-        if (statusDiv) statusDiv.innerHTML = '✅ Downloaded & cached · Ready offline';
-      } else if (moduleId) showMessage(`✅ "${title}" already in library.`);
-    });
+      let id = '', title = '';
+      if(card?.dataset.resource === 'cit238') { id='cit238'; title='Mobile App Development'; }
+      else if(card?.dataset.resource === 'webdev') { id='webdev'; title='Web Development'; }
+      else if(card?.dataset.resource === 'database') { id='database'; title='Database Systems'; }
+      if(id && !offlineModules.find(m=>m.id===id)) {
+        offlineModules.push({id, title});
+        localStorage.setItem('wusu_offline', JSON.stringify(offlineModules));
+        renderLibrary();
+        showMessage(`✅ "${title}" saved offline`);
+      } else if(id) showMessage(`Already in library`);
+    };
   });
 
-  document.getElementById('closeModalBtn')?.addEventListener('click', () => document.getElementById('moduleModal').classList.remove('active'));
-  document.getElementById('moduleModal')?.addEventListener('click', (e) => { if (e.target === document.getElementById('moduleModal')) document.getElementById('moduleModal').classList.remove('active'); });
-
-  let progressData = JSON.parse(localStorage.getItem('wusu_progress_v2')) || { percent: 64, modules: 8, activities: 5, streak: 12 };
-  function updateAllUI() {
-    document.getElementById('progressFill').style.width = progressData.percent + '%';
-    document.getElementById('progressPercent').innerText = progressData.percent + '%';
-    document.getElementById('modulesCount').innerText = progressData.modules;
-    document.getElementById('activitiesCount').innerText = progressData.activities;
-    document.getElementById('streakCount').innerText = progressData.streak;
-    document.getElementById('statProgress').innerText = progressData.percent + '%';
-    document.getElementById('statModules').innerText = progressData.modules;
-    document.getElementById('statActivities').innerText = progressData.activities;
-    document.getElementById('statStreak').innerText = progressData.streak;
-    localStorage.setItem('wusu_progress_v2', JSON.stringify(progressData));
+  let progress = JSON.parse(localStorage.getItem('wusu_progress')) || { percent: 64, modules: 8, streak: 12 };
+  function updateProgressUI() {
+    document.getElementById('progressFill').style.width = progress.percent + '%';
+    document.getElementById('progressPercent').innerText = progress.percent + '%';
+    document.getElementById('modulesCount').innerText = progress.modules;
+    document.getElementById('streakCount').innerText = progress.streak;
+    document.getElementById('statProgress').innerText = progress.percent + '%';
+    document.getElementById('statModules').innerText = progress.modules;
+    document.getElementById('statStreak').innerText = progress.streak;
+    localStorage.setItem('wusu_progress', JSON.stringify(progress));
   }
-  updateAllUI();
+  updateProgressUI();
 
-  document.getElementById('progressTracker')?.addEventListener('click', (e) => {
-    if (e.target.closest('.complete-btn') || e.target.closest('.sync-now')) return;
-    let newPercent = Math.min(100, progressData.percent + 5);
-    let newModules = Math.min(12, progressData.modules + (Math.random() > 0.65 ? 1 : 0));
-    let newActivities = Math.min(7, progressData.activities + (Math.random() > 0.7 ? 1 : 0));
-    progressData = { percent: newPercent, modules: newModules, activities: newActivities, streak: progressData.streak + 1 };
-    updateAllUI();
-    showMessage(`📚 Study session! +5% progress. 🔥 Streak: ${progressData.streak} days`);
-  });
+  document.getElementById('progressTracker')?.onclick = () => {
+    progress.percent = Math.min(100, progress.percent + 5);
+    progress.modules = Math.min(12, progress.modules + (Math.random()>0.6?1:0));
+    progress.streak += 1;
+    updateProgressUI();
+    showMessage(`📚 +5% progress! Streak: ${progress.streak}`);
+  };
 
-  let completedDeadlines = JSON.parse(localStorage.getItem('completedDeadlines_v2')) || [];
-  const wireframeBtn = document.querySelector('[data-deadline-action="complete-wireframe"]');
-  if (wireframeBtn) {
-    if (completedDeadlines.includes('wireframe')) { wireframeBtn.style.background = '#c6f7d0'; wireframeBtn.innerText = '✅ Completed'; }
-    wireframeBtn.addEventListener('click', () => {
-      if (!completedDeadlines.includes('wireframe')) {
-        completedDeadlines.push('wireframe');
-        localStorage.setItem('completedDeadlines_v2', JSON.stringify(completedDeadlines));
-        wireframeBtn.style.background = '#c6f7d0';
-        wireframeBtn.innerText = '✅ Completed';
-        showMessage(`✔️ Wireframe marked done offline.`);
-      } else showMessage(`Already completed!`);
-    });
-  }
-  document.querySelector('[data-deadline-action="reminder-all"]')?.addEventListener('click', () => showMessage(`🔔 Offline reminder saved.`));
+  let completed = JSON.parse(localStorage.getItem('wusu_completed')) || [];
+  document.querySelector('[data-deadline-action="complete-wireframe"]')?.onclick = () => {
+    if(!completed.includes('wireframe')) {
+      completed.push('wireframe');
+      localStorage.setItem('wusu_completed', JSON.stringify(completed));
+      showMessage('✔️ Wireframe completed offline');
+    } else showMessage('Already done!');
+  };
 
-  let pendingItems = JSON.parse(localStorage.getItem('pendingSubmissions_v2')) || ["UX Research Report", "Midterm Answer Sheet"];
-  function updatePendingCounter() {
-    document.getElementById('pendingBadge').innerText = `${pendingItems.length} pending`;
-    document.getElementById('lastSyncTime').innerText = new Date().toLocaleTimeString([], {hour:'2-digit', minute:'2-digit'});
-  }
+  let pending = JSON.parse(localStorage.getItem('wusu_pending')) || ["UX Report", "Midterms"];
   function renderQueue() {
     const container = document.getElementById('queueContainer');
-    if (!container) return;
+    if(!container) return;
     container.innerHTML = '';
-    if (pendingItems.length === 0) container.innerHTML = `<div class="queue-card"><div>✨ All submissions synced!</div></div>`;
-    else pendingItems.forEach((item, idx) => {
+    if(pending.length===0) container.innerHTML = '<div class="queue-card"><div>✨ All synced!</div></div>';
+    else pending.forEach((item,idx) => {
       const div = document.createElement('div');
       div.className = 'queue-card';
-      div.innerHTML = `<div><strong>📎 ${item}</strong><br><span style="font-size:10px;">Saved offline</span></div><div class="sync-now" data-sync-idx="${idx}">⏳ Sync</div>`;
-      div.querySelector('.sync-now').addEventListener('click', () => {
-        pendingItems = pendingItems.filter((_, i) => i !== idx);
-        localStorage.setItem('pendingSubmissions_v2', JSON.stringify(pendingItems));
-        updatePendingCounter();
+      div.innerHTML = `<div><strong>📎 ${item}</strong></div><div class="sync-now" data-idx="${idx}">Sync</div>`;
+      div.querySelector('.sync-now').onclick = () => {
+        pending = pending.filter((_,i)=>i!==idx);
+        localStorage.setItem('wusu_pending', JSON.stringify(pending));
         renderQueue();
-        showMessage(`✅ "${item}" synced!`);
-      });
+        showMessage(`✅ "${item}" synced`);
+        document.getElementById('pendingBadge').innerText = `${pending.length} pending`;
+      };
       container.appendChild(div);
     });
-    updatePendingCounter();
+    document.getElementById('pendingBadge').innerText = `${pending.length} pending`;
   }
   renderQueue();
 
-  const editNameBtn = document.getElementById('editNameBtn');
-  const displayNameSpan = document.getElementById('displayName');
-  const profileNameDisplay = document.getElementById('profileNameDisplay');
-  editNameBtn?.addEventListener('click', () => {
-    let newName = prompt('Enter your name:', displayNameSpan.innerText);
-    if (newName?.trim()) {
-      displayNameSpan.innerText = newName.trim();
-      if (profileNameDisplay) profileNameDisplay.innerText = newName.trim();
-      localStorage.setItem('studentName_v2', newName.trim());
-      showMessage(`✅ Name updated: ${newName.trim()}`);
+  document.getElementById('editNameBtn')?.onclick = () => {
+    let newName = prompt('Enter name:', document.getElementById('displayName').innerText);
+    if(newName?.trim()) {
+      document.getElementById('displayName').innerText = newName.trim();
+      document.getElementById('profileNameDisplay').innerText = newName.trim();
+      localStorage.setItem('wusu_name', newName.trim());
+      showMessage('Name updated');
     }
-  });
-  const savedName = localStorage.getItem('studentName_v2');
-  if (savedName && displayNameSpan) { displayNameSpan.innerText = savedName; if (profileNameDisplay) profileNameDisplay.innerText = savedName; }
-
-  const hubSection = document.getElementById('hubSection');
-  const profileSection = document.getElementById('profileSection');
-  const navItems = document.querySelectorAll('.nav-item');
-  function showSection(sectionName) {
-    if (sectionName === 'profile') {
-      hubSection.style.display = 'none';
-      profileSection.classList.add('active');
-      updateAllUI();
-      showMessage(`👤 Profile Dashboard`);
-    } else {
-      hubSection.style.display = 'block';
-      profileSection.classList.remove('active');
-      if (sectionName === 'library') document.getElementById('offlineLibrary')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-      else if (sectionName === 'deadlines') document.getElementById('deadlineWidget')?.scrollIntoView({ behavior: 'smooth' });
-      else if (sectionName === 'hub') document.getElementById('scrollContent').scrollTo({ top: 0, behavior: 'smooth' });
-      showMessage(`📱 ${sectionName} — offline mode`);
-    }
+  };
+  const savedName = localStorage.getItem('wusu_name');
+  if(savedName) {
+    document.getElementById('displayName').innerText = savedName;
+    document.getElementById('profileNameDisplay').innerText = savedName;
   }
-  navItems.forEach(nav => {
-    nav.addEventListener('click', () => {
-      navItems.forEach(n => { n.classList.remove('active'); });
+
+  const hub = document.getElementById('hubSection');
+  const profile = document.getElementById('profileSection');
+  document.querySelectorAll('.nav-item').forEach(nav => {
+    nav.onclick = () => {
+      document.querySelectorAll('.nav-item').forEach(n=>n.classList.remove('active'));
       nav.classList.add('active');
-      showSection(nav.getAttribute('data-nav'));
-    });
+      const tab = nav.getAttribute('data-nav');
+      if(tab === 'profile') { hub.style.display = 'none'; profile.classList.add('active'); }
+      else { hub.style.display = 'block'; profile.classList.remove('active'); }
+      if(tab === 'library') document.getElementById('offlineLibrary')?.scrollIntoView({behavior:'smooth'});
+      if(tab === 'deadlines') document.querySelector('.deadline-card')?.scrollIntoView({behavior:'smooth'});
+    };
   });
 
-  document.getElementById('syncStatusArea')?.addEventListener('click', () => showMessage(`🔄 ${pendingItems.length} pending items will sync when online.`));
-
-  renderOfflineLibrary();
-  setTimeout(() => showMessage(`✅ 6 modules available! Offline Library ready | Real-time clock active`), 500);
+  document.getElementById('syncStatusArea')?.onclick = () => showMessage(`🔄 ${pending.length} pending items will sync when online`);
+  renderLibrary();
+  showMessage('✅ WUSU Connect ready | Offline-first');
 </script>
 </body>
 </html>
